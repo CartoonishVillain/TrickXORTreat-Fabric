@@ -1,5 +1,8 @@
 package com.cartoonishvillain.trickxortreat;
 
+import com.cartoonishvillain.trickxortreat.config.TrickXORConfig;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -22,11 +25,16 @@ public class TrickXORTreat implements ModInitializer {
 	public static ArrayList<MobEffect> trickeffects = new ArrayList<MobEffect>(List.of(MobEffects.LEVITATION, MobEffects.WEAKNESS, MobEffects.MOVEMENT_SLOWDOWN, MobEffects.UNLUCK, MobEffects.BLINDNESS, MobEffects.CONFUSION));
 	public static ArrayList<Item> candies;
 
+	public static TrickXORConfig config;
+
 	@Override
 	public void onInitialize() {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
+
+		AutoConfig.register(TrickXORConfig.class, GsonConfigSerializer::new);
+		config = AutoConfig.getConfigHolder(TrickXORConfig.class).getConfig();
 
 		Register.register();
 		candies = new ArrayList<Item>(List.of(Register.CREEPERCHOCOLATE, Register.FLAMINGDOTS, Register.SUGARBONE, Register.CLOUDCANDY, Register.DOLPHINCRUNCH, Register.HEROICBAR, Register.PIGMENCOIN, Register.RABBITCANDY, Register.CREEPERCHOCOLATE, Register.FLAMINGDOTS, Register.SUGARBONE, Register.CLOUDCANDY, Register.DOLPHINCRUNCH, Register.HEROICBAR, Register.PIGMENCOIN, Register.RABBITCANDY, Register.PRISMATICFLESH));
