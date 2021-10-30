@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "trickxortreat",
+  "version": "${version}",
+
+  "name": "Trick XOR Treat",
+  "description": "The Trick and the Treat enchant.",
+  "authors": [
+    "Cartoonish Villain"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
+
+  "license": "MIT",
+  "icon": "assets/trickxortreat/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.cartoonishvillain.trickxortreat.TrickXORTreat"
+    ]
+  },
+  "mixins": [
+    "trickxortreat.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
