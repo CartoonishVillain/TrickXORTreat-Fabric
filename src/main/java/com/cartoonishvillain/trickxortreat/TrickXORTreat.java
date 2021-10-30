@@ -4,6 +4,7 @@ import com.cartoonishvillain.trickxortreat.config.TrickXORConfig;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffect;
@@ -11,6 +12,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Item;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import samebutdifferent.trickortreat.registry.ModItems;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,8 @@ public class TrickXORTreat implements ModInitializer {
 
 	public static TrickXORConfig config;
 
+	public static boolean isTrickOrTreatLoaded;
+
 	@Override
 	public void onInitialize() {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
@@ -37,7 +41,17 @@ public class TrickXORTreat implements ModInitializer {
 		config = AutoConfig.getConfigHolder(TrickXORConfig.class).getConfig();
 
 		Register.register();
+
+		isTrickOrTreatLoaded = FabricLoader.getInstance().isModLoaded("trickortreat") && config.trickxortreatoptions.trickOrTreatCompat;
 		candies = new ArrayList<Item>(List.of(Register.CREEPERCHOCOLATE, Register.FLAMINGDOTS, Register.SUGARBONE, Register.CLOUDCANDY, Register.DOLPHINCRUNCH, Register.HEROICBAR, Register.PIGMENCOIN, Register.RABBITCANDY, Register.CREEPERCHOCOLATE, Register.FLAMINGDOTS, Register.SUGARBONE, Register.CLOUDCANDY, Register.DOLPHINCRUNCH, Register.HEROICBAR, Register.PIGMENCOIN, Register.RABBITCANDY, Register.PRISMATICFLESH));
 
+		if(isTrickOrTreatLoaded){
+			//Add another pile of entries for my own candies to artificially make the next ones more rare, since it isn't my mod.
+			candies = new ArrayList<Item>(List.of(Register.CREEPERCHOCOLATE, Register.FLAMINGDOTS, Register.SUGARBONE, Register.CLOUDCANDY, Register.DOLPHINCRUNCH, Register.HEROICBAR, Register.PIGMENCOIN, Register.RABBITCANDY, Register.CREEPERCHOCOLATE, Register.FLAMINGDOTS, Register.SUGARBONE, Register.CLOUDCANDY, Register.DOLPHINCRUNCH, Register.HEROICBAR, Register.PIGMENCOIN, Register.RABBITCANDY, Register.PRISMATICFLESH));
+			candies = new ArrayList<Item>(List.of(Register.CREEPERCHOCOLATE, Register.FLAMINGDOTS, Register.SUGARBONE, Register.CLOUDCANDY, Register.DOLPHINCRUNCH, Register.HEROICBAR, Register.PIGMENCOIN, Register.RABBITCANDY, Register.CREEPERCHOCOLATE, Register.FLAMINGDOTS, Register.SUGARBONE, Register.CLOUDCANDY, Register.DOLPHINCRUNCH, Register.HEROICBAR, Register.PIGMENCOIN, Register.RABBITCANDY, Register.PRISMATICFLESH));
+
+			//additional modded candy
+			candies.addAll(List.of(ModItems.FIREFINGERS, ModItems.FIZZLERS, ModItems.DEADISH_FISH, ModItems.PEARL_POP, ModItems.SCREAMBURSTS, ModItems.EYECE_CREAM, ModItems.MEMBRANE_BUTTER_CUPS, ModItems.BONEBREAKER, ModItems.SLIME_GUM, ModItems.CHOCOLATE_SPIDER_EYE, ModItems.SOUR_PATCH_ZOMBIES));
+		}
 	}
 }

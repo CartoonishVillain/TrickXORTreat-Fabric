@@ -18,6 +18,12 @@ repositories {
 	// for more information about repositories.
 	maven { url "https://maven.shedaniel.me/" }
 
+	maven {
+		url "https://cursemaven.com"
+		content {
+			includeGroup "curse.maven"
+		}
+	}
 }
 
 dependencies {
@@ -32,6 +38,10 @@ dependencies {
 	modApi("me.shedaniel.cloth:cloth-config-fabric:5.0.38") {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
+
+	modImplementation ("curse.maven:trickortreat-535636:3507916")
+//	modCompileOnly ("curse.maven:trickortreat-535636:3507916")
+
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.

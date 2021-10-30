@@ -12,5 +12,6 @@ public class TrickXORConfig implements ConfigData {
     public static class TreatOptions{
         public int level1TrickEffectChance = 5;
         public int level1TreatEffectChance = 5;
+        public boolean trickOrTreatCompat = true;
     }
 }
