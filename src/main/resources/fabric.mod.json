@@ -22,20 +22,16 @@
       "com.cartoonishvillain.trickxortreat.TrickXORTreat"
     ]
   },
-  "mixins": [
-    "trickxortreat.mixins.json"
-  ],
+
 
   "depends": {
-    "fabricloader": ">=0.11.3",
+    "fabricloader": ">=0.12.5",
     "fabric": "*",
-    "minecraft": "1.17.x",
-    "java": ">=16"
+    "minecraft": "1.18.x",
+    "java": ">=17",
+    "cloth-config2": "*"
   },
   "suggests": {
     "trickortreat": "*"
-  },
-  "depends": {
-    "cloth-config2": "*"
   }
 }
